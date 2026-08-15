@@ -4,6 +4,7 @@ export default {
   expectedClientInject: [
     '@wha1echai/dsh-webpage',
     '@deepseek-ai/dsh-client-locale',
+    '@deepseek-ai/dsh-client-ui-primitives',
   ],
   packedAllowlist: [
     'package/package.json',

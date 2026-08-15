@@ -1,4 +1,10 @@
 import { useMemo, useState, type FormEvent, type ReactNode } from 'react'
+import {
+  Button,
+  IconChevronRightOutline14,
+  IconListPenOutline16,
+  IconWarningOutline16,
+} from '@deepseek-ai/dsh-client-ui-primitives'
 import type { PropsLocale, PropsRenderSlots } from '@deepseek-ai/dsh-client-ui-slots'
 import type { WebpageAppSlotProps } from '@wha1echai/dsh-webpage/client'
 import { AppEmpty, AppField, AppFields, AppList, AppPage, AppRow } from '@wha1echai/dsh-webpage/ui'
@@ -52,32 +58,36 @@ function ListPage({
     <article data-route="/">
       <AppPage title={t('listTitle')} description={t('description')} actions={actions} actionsLabel={t('actions')}>
         <form className={styles.composer} onSubmit={onCreate}>
-          <label>
-            {t('composerLabel')}
-            <textarea
-              className={styles.bodyInput}
-              value={draft}
-              placeholder={t('bodyPlaceholder')}
-              onChange={event => onDraft(event.target.value)}
-            />
-          </label>
-          <div className={styles.controls}>
-            <button type="submit" className={styles.primaryButton} disabled={draft.trim().length === 0}>
+          <textarea
+            className={styles.bodyInput}
+            value={draft}
+            placeholder={t('bodyPlaceholder')}
+            aria-label={t('composerLabel')}
+            onChange={event => onDraft(event.target.value)}
+          />
+          <div className={styles.composerActions}>
+            <Button type="submit" variant="primary" disabled={draft.trim().length === 0}>
               {t('create')}
-            </button>
+            </Button>
           </div>
         </form>
         {rows.length === 0
-          ? <AppEmpty>{t('listEmpty')}</AppEmpty>
+          ? (
+            <div className={styles.emptyState}>
+              <IconListPenOutline16 className={styles.emptyIcon} size={32} />
+              <AppEmpty>{t('listEmpty')}</AppEmpty>
+            </div>
+          )
           : (
-            <AppList dense label={t('listTitle')}>
+            <AppList label={t('listTitle')}>
               {rows.map(note => (
                 <AppRow
                   key={note.id}
-                  dense
                   data-app-id={note.id}
                   title={preview(note.body)}
                   description={formatCreatedAt(note.createdAt)}
+                  icon={<IconListPenOutline16 className={styles.noteIcon} />}
+                  trailing={<IconChevronRightOutline14 className={styles.noteIcon} />}
                   onClick={() => navigate(`/${note.id}`)}
                 />
               ))}
@@ -98,13 +108,16 @@ function DetailPage({
   return (
     <article data-route={`/${note.id}`}>
       <AppPage title={preview(note.body)} actions={actions} actionsLabel={t('actions')}>
+        <section className={styles.noteArticle}>
+          <p className={styles.noteCaption}>{t('body')}</p>
+          <pre className={styles.noteBody} data-field="body">{note.body}</pre>
+        </section>
         <AppFields>
-          <AppField field="body" label={t('body')} value={<pre className={styles.noteBody}>{note.body}</pre>} />
           <AppField field="created" label={t('created')} value={formatCreatedAt(note.createdAt)} />
         </AppFields>
         <div className={styles.controls}>
-          <button type="button" className={styles.secondaryButton} onClick={() => navigate('/')}>{t('backToList')}</button>
-          <button type="button" className={styles.primaryButton} onClick={onDelete}>{t('delete')}</button>
+          <Button variant="outline" onClick={() => navigate('/')}>{t('backToList')}</Button>
+          <Button variant="ghost" className={styles.deleteButton} onClick={onDelete}>{t('delete')}</Button>
         </div>
       </AppPage>
     </article>
@@ -120,9 +133,12 @@ function UnavailablePage({
   return (
     <article data-route="unavailable">
       <AppPage title={t('unavailableTitle')} description={t('unavailableDescription')} actions={actions} actionsLabel={t('actions')}>
-        <code className={styles.path}>{appPath}</code>
+        <div className={styles.emptyState}>
+          <IconWarningOutline16 className={styles.emptyIcon} size={32} />
+          <code className={styles.path}>{appPath}</code>
+        </div>
         <div className={styles.controls}>
-          <button type="button" className={styles.primaryButton} onClick={() => navigate('/')}>{t('backToList')}</button>
+          <Button variant="primary" onClick={() => navigate('/')}>{t('backToList')}</Button>
         </div>
       </AppPage>
     </article>

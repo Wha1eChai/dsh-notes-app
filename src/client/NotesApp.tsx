@@ -3,6 +3,7 @@ import {
   Button,
   IconChevronRightOutline14,
   IconListPenOutline16,
+  IconTrashOutline16,
   IconWarningOutline16,
 } from '@deepseek-ai/dsh-client-ui-primitives'
 import type { PropsLocale, PropsRenderSlots } from '@deepseek-ai/dsh-client-ui-slots'
@@ -117,7 +118,7 @@ function DetailPage({
         </AppFields>
         <div className={styles.controls}>
           <Button variant="outline" onClick={() => navigate('/')}>{t('backToList')}</Button>
-          <Button variant="ghost" className={styles.deleteButton} onClick={onDelete}>{t('delete')}</Button>
+          <Button variant="ghost" className={styles.deleteButton} icon={<IconTrashOutline16 />} onClick={onDelete}>{t('delete')}</Button>
         </div>
       </AppPage>
     </article>

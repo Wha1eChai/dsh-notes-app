@@ -1,8 +1,10 @@
 # dsh-notes-app
 
-An independent DeepSeek Harness App for short text notes.
+An independent DeepSeek Harness App for short text notes. Package `@wha1echai/dsh-notes-app`. App ID `wha1echai.notes`, `surface: 'panel'`.
 
 This package is a Webpage consumer, not a Webpage feature. It peers on `@wha1echai/dsh-webpage` and registers App ID `wha1echai.notes`. The pack inserts only this plugin.
+
+This repository was produced in a single session by an agent that had never seen the platform, working only from the project authoring skill, as a cold-start test of whether the contract can carry a stranger.
 
 ## What it does
 
@@ -14,18 +16,18 @@ This package is a Webpage consumer, not a Webpage feature. It peers on `@wha1ech
 - Unknown note ids stay on the URL and show an unavailable state
 - Child slot `wha1echai.notes.actions` for later extensions; the section is omitted when empty
 
-It does not sync across devices, encrypt notes, or add Host remotes.
+Notes are stored in the browser's `localStorage`. They are not synced and not encrypted. The App does not add Host remotes.
 
 ## Requirements
 
 - DSH `0.1.0-rc.6`
 - Node `^22.19.0 || >=24.0.0`
 - pnpm `11.7.0`
-- `@wha1echai/dsh-webpage` `0.1.0` (listed first in this package's Pack)
+- `@wha1echai/dsh-webpage` `0.1.0` present in the profile first
 
 ## Install
 
-Webpage is not on npm yet. Pack both packages, then add this App to a disposable or chosen web profile:
+Nothing in this family is published to npm yet. Pack this App after a build, then add the tarball to a web profile that already has `@wha1echai/dsh-webpage`:
 
 ```powershell
 dsh plugin --profile web add .\wha1echai-dsh-webpage-0.1.0.tgz
@@ -42,3 +44,7 @@ pnpm verify
 ```
 
 On machines where nested `pnpm run` resolves pnpm `11.0.9` against `packageManager: pnpm@11.7.0`, invoke the scripts directly: `node scripts/check.mjs --lint`, `node scripts/check.mjs --pack`, and `node node_modules/vitest/vitest.mjs run --coverage`.
+
+## Family
+
+The platform repository [dsh-webpage](https://github.com/Wha1eChai/dsh-webpage) holds the kernel, the authoring contract, and the docs. Apps live in their own repositories on purpose.

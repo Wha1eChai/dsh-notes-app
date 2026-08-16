@@ -1,5 +1,5 @@
 /** localStorage key for the Notes App. The platform owns no store. */
-export const STORAGE_KEY = 'wha1echai.notes:v1'
+export const STORAGE_KEY = 'dshapps.notes:v1'
 
 /** One addressable short text note. */
 export interface Note {

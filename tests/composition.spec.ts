@@ -27,11 +27,11 @@ describe('Notes App composition', () => {
       effect,
     } as never)
 
-    expect(name).toBe('@wha1echai/dsh-notes-app')
+    expect(name).toBe('@dshapps/notes-app')
     expect(inject).toEqual(['pages', 'slots', 'locale'])
     expect(effect).toHaveBeenCalledOnce()
     expect(pageRegister).toHaveBeenCalledWith(expect.objectContaining({
-      id: 'wha1echai.notes',
+      id: 'dshapps.notes',
       label: '鲸鱼笔记',
       surface: 'panel',
     }))
@@ -39,10 +39,10 @@ describe('Notes App composition', () => {
     expect(slotInject).toHaveBeenCalledWith('webpage.app', expect.any(Function))
     expect(slotRegister).toHaveBeenCalledWith({
       name: 'webpage.app',
-      key: 'wha1echai.notes',
+      key: 'dshapps.notes',
       locale: 'notes',
       children: {
-        'wha1echai.notes.actions': { kind: 'list', scope: 'root' },
+        'dshapps.notes.actions': { kind: 'list', scope: 'root' },
       },
     }, NotesAppBody)
 
@@ -64,7 +64,7 @@ describe('Notes App host and invariant entries', () => {
     expect(invariantInject).toEqual(['invariants'])
     const register = vi.fn(() => () => {})
     const disposer = await applyInvariant({ invariants: { register } } as never)
-    expect(register).toHaveBeenCalledWith('@wha1echai/dsh-notes-app', expect.any(Function))
+    expect(register).toHaveBeenCalledWith('@dshapps/notes-app', expect.any(Function))
     register.mock.calls[0]![1]()
     disposer()
   })

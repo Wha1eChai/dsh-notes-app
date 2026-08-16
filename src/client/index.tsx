@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client'
 import type {} from '@deepseek-ai/dsh-client-locale/client'
-import type { AppDescriptor } from '@wha1echai/dsh-webpage/client'
+import type { AppDescriptor } from '@dshapps/webpage/client'
 
 import { en, zh } from './locales.js'
 
@@ -12,7 +12,7 @@ export const NotesAppBody = lazy(async () => {
 })
 
 const descriptor = Object.freeze({
-  id: 'wha1echai.notes',
+  id: 'dshapps.notes',
   label: '鲸鱼笔记',
   description: '创建、查看和删除短文本笔记。',
   order: 40,
@@ -21,10 +21,10 @@ const descriptor = Object.freeze({
 }) satisfies AppDescriptor
 
 const LOCALE_NAMESPACE = 'notes'
-const APP_ID = 'wha1echai.notes'
+const APP_ID = 'dshapps.notes'
 
 /** Stable Loader identity used for Cordis fiber provenance. */
-export const name = '@wha1echai/dsh-notes-app'
+export const name = '@dshapps/notes-app'
 
 /** Client services required by the Notes App. */
 export const inject = ['pages', 'slots', 'locale']
@@ -39,7 +39,7 @@ export function apply(ctx: ClientContext): void {
       key: APP_ID,
       locale: LOCALE_NAMESPACE,
       children: {
-        'wha1echai.notes.actions': { kind: 'list', scope: 'root' },
+        'dshapps.notes.actions': { kind: 'list', scope: 'root' },
       },
     }, NotesAppBody))
 

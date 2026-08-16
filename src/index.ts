@@ -7,7 +7,7 @@ export interface NotesAppOwner {
 declare module '@deepseek-ai/dsh-client-ui-slots' {
   interface SlotMap {
     /** Kind-specific actions contributed under the Notes App. */
-    'wha1echai.notes.actions': {
+    'dshapps.notes.actions': {
       kind: 'list'
       scope: 'root'
       owner: NotesAppOwner

@@ -7,8 +7,8 @@ import {
   IconWarningOutline16,
 } from '@deepseek-ai/dsh-client-ui-primitives'
 import type { PropsLocale, PropsRenderSlots } from '@deepseek-ai/dsh-client-ui-slots'
-import type { WebpageAppSlotProps } from '@wha1echai/dsh-webpage/client'
-import { AppEmpty, AppField, AppFields, AppList, AppPage, AppRow } from '@wha1echai/dsh-webpage/ui'
+import type { WebpageAppSlotProps } from '@dshapps/webpage/client'
+import { AppEmpty, AppField, AppFields, AppList, AppPage, AppRow } from '@dshapps/webpage/ui'
 import type { NotesAppOwner } from '../index.js'
 import {
   addNote,
@@ -26,7 +26,7 @@ import styles from './NotesApp.module.css'
 
 export type NotesAppProps =
   WebpageAppSlotProps
-  & PropsRenderSlots<'wha1echai.notes.actions'>
+  & PropsRenderSlots<'dshapps.notes.actions'>
   & PropsLocale<'notes'>
   & {
     store?: NoteStore
@@ -154,7 +154,7 @@ export function NotesApp({ appPath, navigate, renderSlot, t, store }: NotesAppPr
   const noteId = noteIdFromPath(appPath)
   const note = noteId === undefined ? undefined : notes.find(entry => entry.id === noteId)
   const owner: NotesAppOwner = Object.freeze(noteId === undefined ? { appPath } : { appPath, noteId })
-  const actions = renderSlot('wha1echai.notes.actions', owner)
+  const actions = renderSlot('dshapps.notes.actions', owner)
 
   const persist = (next: readonly Note[]): void => {
     resolvedStore.save(next)

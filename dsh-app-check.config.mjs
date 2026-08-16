@@ -1,8 +1,8 @@
-/** @type {import('@wha1echai/dsh-app-check').AppCheckConfig} */
+/** @type {import('@dshapps/app-check').AppCheckConfig} */
 export default {
-  name: '@wha1echai/dsh-notes-app',
+  name: '@dshapps/notes-app',
   expectedClientInject: [
-    '@wha1echai/dsh-webpage',
+    '@dshapps/webpage',
     '@deepseek-ai/dsh-client-locale',
     '@deepseek-ai/dsh-client-ui-primitives',
   ],
@@ -22,8 +22,8 @@ export default {
     'package/lib/types/client/notes.d.ts',
     'package/lib/types/client/NotesApp.d.ts',
   ],
-  patchMustInclude: ["name: '@wha1echai/dsh-notes-app'"],
-  patchMustNotInclude: ["name: '@wha1echai/dsh-webpage'"],
+  patchMustInclude: ["name: '@dshapps/notes-app'"],
+  patchMustNotInclude: ["name: '@dshapps/webpage'"],
   allowFileDshPins: false,
   require: {
     publishable: true,

@@ -34,7 +34,7 @@ function props(
   close = vi.fn(),
 ): NotesAppProps {
   return {
-    appId: 'wha1echai.notes',
+    appId: 'dshapps.notes',
     appPath,
     search: '',
     hash: '',
@@ -59,7 +59,7 @@ describe('NotesApp', () => {
     expect(screen.getByRole('article').getAttribute('data-route')).toBe('/')
     expect(screen.getByText('No notes yet')).toBeTruthy()
     expect(screen.queryByRole('button', { name: 'Close app' })).toBeNull()
-    expect(renderSlot).toHaveBeenCalledWith('wha1echai.notes.actions', { appPath: '/' })
+    expect(renderSlot).toHaveBeenCalledWith('dshapps.notes.actions', { appPath: '/' })
     expect(screen.getByRole('button', { name: 'Kind action' })).toBeTruthy()
     expect(screen.getByRole('heading', { name: 'Extension actions' })).toBeTruthy()
   })
@@ -119,7 +119,7 @@ describe('NotesApp', () => {
     expect(screen.getByRole('heading', { name: 'keep this' })).toBeTruthy()
     expect(document.querySelector('[data-field="body"]')?.textContent).toContain('keep this')
     expect(document.querySelector('[data-field="created"]')?.textContent).toContain('2026-08-16')
-    expect(renderSlot).toHaveBeenCalledWith('wha1echai.notes.actions', { appPath: '/n-1', noteId: 'n-1' })
+    expect(renderSlot).toHaveBeenCalledWith('dshapps.notes.actions', { appPath: '/n-1', noteId: 'n-1' })
     fireEvent.click(screen.getByRole('button', { name: 'Back to list' }))
     expect(screen.queryByRole('button', { name: 'Close app' })).toBeNull()
     expect(navigate).toHaveBeenCalledWith('/')

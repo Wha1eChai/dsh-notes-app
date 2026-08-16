@@ -2,7 +2,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import type { InvariantInstaller } from '@deepseek-ai/dsh-invariants'
 
-const PACKAGE_NAME = '@wha1echai/dsh-notes-app'
+const PACKAGE_NAME = '@dshapps/notes-app'
 
 /** Cordis companion plugin name. */
 export const name = 'dsh-notes-app-invariant'

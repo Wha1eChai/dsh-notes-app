@@ -1,5 +1,7 @@
 # dsh-notes-app
 
+English | [中文](README.zh.md)
+
 An independent DeepSeek Harness App for short text notes. Package `@dshapps/notes-app`. App ID `dshapps.notes`, `surface: 'panel'`.
 
 This package is a Webpage consumer, not a Webpage feature. It peers on `@dshapps/webpage` and registers App ID `dshapps.notes`. The pack inserts only this plugin.
@@ -48,3 +50,5 @@ On machines where nested `pnpm run` resolves pnpm `11.0.9` against `packageManag
 ## Family
 
 The platform repository [dsh-webpage](https://github.com/dshapps/dsh-webpage) holds the kernel, the authoring contract, and the docs. Start a new App from [dsh-app-template](https://github.com/dshapps/dsh-app-template). Apps live in their own repositories on purpose.
+
+Licensed under the [MIT License](LICENSE).
